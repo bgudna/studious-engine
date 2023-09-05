@@ -14,7 +14,7 @@ app.get('/', (request, response) => {
 });
 
 // route for posting a new game <-- temp!
-app.route('/game', async (request, response) => {
+app.post('/game', async (request, response) => {
     try {
         if (
             !request.body.title ||

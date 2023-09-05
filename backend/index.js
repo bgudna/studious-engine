@@ -1,4 +1,4 @@
-import express, { response } from "express";  
+import express, { request, response } from "express";  
 import { PORT } from "./config.js";
 import { mongodbURL } from "./keys.js"; // put the api keys from mongodb.com in this file and import
 import mongoose from "mongoose";
@@ -40,6 +40,21 @@ app.post('/game', async (request, response) => {
         console.log(error);
         response.status(500).send({ message: error.message });
     }
+})
+
+// get games collection from DB
+app.get('/games', async (request, response) => {
+        try {
+            const gamesList = await Game.find({})
+            return response.status(200).json({
+                count: gamesList.length,
+                data: gamesList
+            });
+
+        } catch (error) {
+            console.log(error.message);
+            response.status(500).send({ message: error.message });
+        }
 })
 
 mongoose.connect(mongodbURL)

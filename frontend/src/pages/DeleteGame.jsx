@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const DeleteGames = () => {
+const DeleteGame = () => {
   return (
     <div>DeleteGames</div>
   )
 }
+
+export default DeleteGame

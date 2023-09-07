@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const EditGame = () => {
+const EditGame = () => {
   return (
     <div>EditGames</div>
   )
 }
+
+export default EditGame

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
-import spinner from '../components/spinner'
+import Spinner from '../components/Spinner'
 import { Link } from 'react-router-dom'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { BsInfoCircle } from 'react-icons/bs'
@@ -18,11 +18,11 @@ const Home = () => {
       .then((response => {
         setGames(response.data.data);
         setLoading(false);
-      })
+      }))
       .catch((error) => {
         console.log(error);
         setLoading(false);
-      })); 
+      }); 
   }, []);
 
   return (
@@ -30,12 +30,12 @@ const Home = () => {
       <div className='flex justify-between items-center'>
         <h1 className='text-3xl my-8'>Games List</h1>
       
-        <Link to='/books/create'>
+        <Link to='/games/create'>
           <MdOutlineAddBox className='text-sky-800 text-4xl' />
         </Link>
       </div>
      { loading ? (
-      <spinner />
+      <Spinner />
      ) : (
         <table className='w-full border-separate border-spacing-2'>
           <thead>
@@ -44,12 +44,12 @@ const Home = () => {
               <th className='border border-slate-800 rounded-md'>Title</th>
               <th className='border border-slate-800 rounded-md max-md:hidden'>Publisher</th>
               <th className='border border-slate-800 rounded-md'>Genre</th>
-              <th className='border border-slate-800 rounded-md'>More</th>
+              <th className='border border-slate-800 rounded-md'>Actions</th>
             </tr>
           </thead>
           <tbody>
             {games.map((game, index) => (
-              <tr key={game.id} className='h-8'>
+              <tr key={game._id} className='h-8'>
                 <td className='border border-slate-700 rounded-md text-center'>
                   {index + 1}
                 </td>
@@ -63,13 +63,13 @@ const Home = () => {
                   {game.genre}
                 </td>
                 <td className='flex justify-center gap-x-4'>
-                  <Link to={`/games/details/${game.id}`}>
+                  <Link to={`/games/details/${game._id}`}>
                     <BsInfoCircle className='text-2xl text-green-800' />
                   </Link>
-                  <Link to={`/games/edit/${game.id}`}>
+                  <Link to={`/games/edit/${game._id}`}>
                     <AiOutlineEdit className='text-2xl text-yellow-800' />                    
                   </Link>
-                  <Link to={`/games/delete/${game.id}`}>
+                  <Link to={`/games/delete/${game._id}`}>
                     <MdOutlineDelete className='text-2xl text-red-800' />
                   </Link>
                 </td>

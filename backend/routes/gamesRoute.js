@@ -50,9 +50,8 @@ router.get('/', async (request, response) => {
 // get a single game from DB
 router.get('/:id', async (request, response) => {
     try {
-        const { gameID } = request.params;
-
-        const game = await Game.findById({gameID})
+        const { id } = request.params;        
+        const game = await Game.findById({id})
         return response.status(200).json({game});
 
     } catch (error) {
